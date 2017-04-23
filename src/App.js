@@ -3,13 +3,31 @@ import logo from './logo.svg';
 import './App.css';
 
 class NavItem extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      hideChildren: true
+    }
+  }
+  toggleChildren() {
+    const { hideChildren } = this.state
+    this.setState({hideChildren: !hideChildren})
+  }
   render() {
+    const { hideChildren } = this.state
     const { item, children } = this.props
+
+    const className = hideChildren? 'nav__item__children': 'nav__item__children show'
     return (
       <div>
-        <li className={'nav__item'}>{item}</li>
-        <ul className={'nav__item__children'}>
-        {children && children.map(child => <NavItem item={child} />)}
+        <li className={'nav__item'}
+            onClick={() => this.toggleChildren()}>{item}</li>
+        <ul className={className}>
+          {children && children.map(child => (
+              <NavItem item={child}
+                       children={children[child]}/>
+            )
+          )}
         </ul>
       </div>
     )
@@ -45,7 +63,7 @@ class App extends Component {
     return (
       <div className="App">
         <Nav items={categories}
-             children={children}/>
+             children={children} />
       </div>
     );
   }
