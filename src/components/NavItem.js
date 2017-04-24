@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavItemContainer from '../containers/Nav'
+import NavItemContainer from '../containers/NavItem'
 import '../App.css'
 
 export default class NavItem extends Component {
@@ -17,7 +17,7 @@ export default class NavItem extends Component {
     const { hideChildren } = this.state
     const { channel: {name, children} } = this.props
     const className = hideChildren? 'nav__item__children': 'nav__item__children show'
-  
+
     return (
       <div>
         <li className={'nav__item'}

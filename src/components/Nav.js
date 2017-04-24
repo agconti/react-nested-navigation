@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import NavItemContainer from '../containers/Nav'
+import NavItemContainer from '../containers/NavItem'
 import '../App.css'
 
 export default class Nav extends Component {
