@@ -3,6 +3,7 @@ export const RESET_ROOT_CHANNELS = 'RESET_ROOT_CHANNELS'
 export const ADD_CHANNEL = 'ADD_CHANNEL'
 export const ADD_BREADCRUMB = 'ADD_BREADCRUMB'
 export const REMOVE_BREADCRUMB = 'REMOVE_BREADCRUMB'
+export const TOGGLE_BREADCRUMB = 'TOGGLE_BREADCRUMB'
 
 const defaultRootChannelState = []
 const defaultChannelState = {}
@@ -34,7 +35,15 @@ export const breadcrumbs = (state=defaultBreadcrumbState, action) => {
     return [...state, action.channel.id]
   }
   if (action.type === REMOVE_BREADCRUMB) {
-    return state.slice(action.channel.id, 1)
+    return state.filter(activeId => activeId != action.channel.id)
+  }
+  if (action.type === TOGGLE_BREADCRUMB) {
+    const { channel: { id } } = action
+    // debugger
+    if (state.includes(id)) {
+      return state.filter(activeId => activeId != id)
+    }
+    return [...state, id]
   }
   return state
 }
@@ -42,3 +51,4 @@ export const breadcrumbs = (state=defaultBreadcrumbState, action) => {
 export const addRootChannel = channel => ({ type: ADD_ROOT_CHANNEL, channel })
 export const addChannel = channel => ({ type: ADD_CHANNEL, channel })
 export const addBreadcrumb = channel => ({ type: ADD_BREADCRUMB, channel })
+export const toggleBreadcrumb = channel => ({ type: TOGGLE_BREADCRUMB, channel })

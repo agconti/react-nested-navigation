@@ -3,25 +3,14 @@ import NavItemContainer from '../containers/NavItem'
 import '../App.css'
 
 export default class NavItem extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      hideChildren: true
-    }
-  }
-  toggleChildren() {
-    const { hideChildren } = this.state
-    this.setState({hideChildren: !hideChildren})
-  }
   render() {
-    const { hideChildren } = this.state
-    const { channel: {name, children} } = this.props
-    const className = hideChildren? 'nav__item__children': 'nav__item__children show'
+    const { isActive, onClick, channel, channel: {name, children} } = this.props
+    const className = isActive?  'nav__item__children show': 'nav__item__children'
 
     return (
       <div>
         <li className={'nav__item'}
-            onClick={() => this.toggleChildren()}>{name}</li>
+            onClick={() => onClick(channel)}>{name}</li>
         <ul className={className}>
           {children && children.map(child => <NavItemContainer id={child} key={child} />)}
         </ul>
