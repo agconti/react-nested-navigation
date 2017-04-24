@@ -11,7 +11,7 @@ const channelsData = {
   '1': { 'name': 'Animals', children: ['4', '5', '6']}
 , '2': { 'name': 'Sports', children: ['7', '8', '9']}
 , '3': { 'name': 'Beers', children: ['10', '11', '12']}
-, '4': { 'name': 'Bears'}
+, '4': { 'name': 'Bears', children: ['13', '14']}
 , '5': { 'name': 'Tigers'}
 , '6': { 'name': 'Snakes'}
 , '7': { 'name': 'Climbing'}
@@ -20,6 +20,8 @@ const channelsData = {
 , '10': { 'name': 'Stout'}
 , '11': { 'name': 'Lager'}
 , '12': { 'name': 'Ale'}
+, '13': { 'name': 'Brown Bear'}
+, '14': { 'name': 'Black Bear'}
 }
 const rootChannelsData = [
   '1'
