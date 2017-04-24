@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
 
 class NavItem extends Component {
   constructor(props){
@@ -39,7 +38,7 @@ class Nav extends Component {
     const { items, children } = this.props
     return (
       <nav className={'nav'}>
-        {items.map(item => (
+        {items && items.map(item => (
             <NavItem item={item}
                      children={children[item]}/>
           )
@@ -48,25 +47,19 @@ class Nav extends Component {
     )
   }
 }
+
 class App extends Component {
   render() {
-    const categories = [
-        'Animals'
-      , 'Sports'
-      , 'Beers'
-    ]
-    const children = {
-        'Animals': ['Bears', 'Tigers', 'Snakes']
-      , 'Sports': ['Climbing', 'Skating', 'Mountianeering']
-      , 'Beers': ['Stout', 'Lager', 'Ale']
-    }
+    const { channels, breadcrumbs } = this.props
     return (
       <div className="App">
-        <Nav items={categories}
-             children={children} />
+        <Nav items={channels}
+             children={breadcrumbs} />
       </div>
-    );
+    )
   }
 }
 
-export default App;
+
+
+export default App
