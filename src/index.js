@@ -30,18 +30,6 @@ const rootChannelsData = [
 ]
 const breadcrumbsData = []
 
-
-// const channelsData = [
-//     'Animals'
-//   , 'Sports'
-//   , 'Beers'
-// ]
-// const breadcrumbsData = {
-//     'Animals': ['Bears', 'Tigers', 'Snakes']
-//   , 'Sports': ['Climbing', 'Skating', 'Mountianeering']
-//   , 'Beers': ['Stout', 'Lager', 'Ale']
-// }
-
 const defaultData = {
   rootChannels: rootChannelsData
 , channels: channelsData
