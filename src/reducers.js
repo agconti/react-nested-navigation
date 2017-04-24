@@ -39,7 +39,6 @@ export const breadcrumbs = (state=defaultBreadcrumbState, action) => {
   }
   if (action.type === TOGGLE_BREADCRUMB) {
     const { channel: { id } } = action
-    // debugger
     if (state.includes(id)) {
       return state.filter(activeId => activeId != id)
     }
