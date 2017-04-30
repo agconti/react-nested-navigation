@@ -4,15 +4,17 @@ import '../App.css'
 
 export default class NavItem extends Component {
   render() {
-    const { isActive, onClick, channel, channel: {name, children} } = this.props
+    const { rootChannelId, isActive, onClick, channel, channel: {name, children} } = this.props
     const className = isActive?  'nav__item__children show': 'nav__item__children'
 
     return (
       <div>
         <li className={'nav__item'}
-            onClick={() => onClick(channel)}>{name}</li>
+            onClick={() => onClick(rootChannelId, channel)}>{name}</li>
         <ul className={className}>
-          {children && children.map(child => <NavItemContainer id={child} key={child} />)}
+          {children && children.map(child => <NavItemContainer id={child}
+                                                               key={child}
+                                                               rootChannelId={rootChannelId}/>)}
         </ul>
       </div>
     )

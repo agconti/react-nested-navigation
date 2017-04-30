@@ -49,5 +49,4 @@ export const breadcrumbs = (state=defaultBreadcrumbState, action) => {
 
 export const addRootChannel = channel => ({ type: ADD_ROOT_CHANNEL, channel })
 export const addChannel = channel => ({ type: ADD_CHANNEL, channel })
-export const addBreadcrumb = channel => ({ type: ADD_BREADCRUMB, channel })
-export const toggleBreadcrumb = channel => ({ type: TOGGLE_BREADCRUMB, channel })
+export const toggleBreadcrumb = (rootChannelId, channel) => ({ type: TOGGLE_BREADCRUMB, rootChannelId, channel })

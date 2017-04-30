@@ -4,7 +4,5 @@ import App from '../components/App'
 const mapStateToProps = ({rootChannels, channels}) => (
   {rootChannels, channels}
 )
-const mapDispatchToProps = dispatch => ({})
-
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App)
+const AppContainer = connect(mapStateToProps)(App)
 export default AppContainer

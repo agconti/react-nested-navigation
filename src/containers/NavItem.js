@@ -9,8 +9,7 @@ const mapStateToProps = ({ channels, breadcrumbs }, { id }) => (
 )
 
 const mapDispatchToProps = dispatch => (
-  { onClick: channel => dispatch(toggleBreadcrumb(channel))}
+  { onClick: (rootChannelId, channel) => dispatch(toggleBreadcrumb(rootChannelId, channel))}
 )
-
 const NavItemContainer = connect(mapStateToProps, mapDispatchToProps)(NavItem)
 export default NavItemContainer

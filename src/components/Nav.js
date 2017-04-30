@@ -7,7 +7,9 @@ export default class Nav extends Component {
     const { items } = this.props
     return (
       <nav className={'nav'}>
-        {items && items.map(id => <NavItemContainer id={id} key={id}/>)}
+        {items && items.map(id => <NavItemContainer id={id}
+                                                    key={id}
+                                                    rootChannelId={id} />)}
       </nav>
     )
   }
