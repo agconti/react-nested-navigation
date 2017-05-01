@@ -9,43 +9,32 @@ const defaultRootChannelState = []
 const defaultChannelState = {}
 const defaultBreadcrumbState = {}
 
-export const rootChannels = (state=defaultRootChannelState, action) => {
-  const func = {
+const createReducer = (defaultState, cases) => (
+  (state=defaultState, action) => {
+    const func = cases[action.type]
+    return func? func(state, action) : state
+  }
+)
+
+export const rootChannels = createReducer(defaultRootChannelState, {
     [ADD_ROOT_CHANNEL]: (state, { channel: { id }}) => [...state, id]
   , [RESET_ROOT_CHANNELS]: () => []
-  }[action.type]
-  return func? func(state, action) : state
-}
+})
 
-export const channels = (state=defaultChannelState, action) => {
-  switch(action.type) {
-    case ADD_CHANNEL:
-      const { channel } = action
-      return {
-        ...state
-      , ...{[channel.id]: channel}
-      }
-    default:
-      return state
-  }
-}
+export const channels = createReducer(defaultChannelState, {
+  [ADD_CHANNEL]: (state, { channel }) => ({...state, ...{[channel.id]: channel}})
+})
 
-export const breadcrumbs = (state=defaultBreadcrumbState, action) => {
-  if (action.type === ADD_BREADCRUMB) {
-    return [...state, action.channel.id]
-  }
-  if (action.type === REMOVE_BREADCRUMB) {
-    return state.filter(activeId => activeId != action.channel.id)
-  }
-  if (action.type === TOGGLE_BREADCRUMB) {
-    const { channel: { id } } = action
+export const breadcrumbs = createReducer(defaultBreadcrumbState, {
+  [ADD_BREADCRUMB]: (state, { channel: { id }}) => [...state, id]
+, [REMOVE_BREADCRUMB]: (state, { channel: { id }}) => state.filter(activeId => activeId !== id)
+, [TOGGLE_BREADCRUMB](state, { channel: { id }}) {
     if (state.includes(id)) {
-      return state.filter(activeId => activeId != id)
+      return state.filter(activeId => activeId !== id)
     }
     return [...state, id]
   }
-  return state
-}
+})
 
 export const addRootChannel = channel => ({ type: ADD_ROOT_CHANNEL, channel })
 export const addChannel = channel => ({ type: ADD_CHANNEL, channel })
