@@ -4,7 +4,7 @@ import { toggleBreadcrumb } from '../reducers'
 
 const mapStateToProps = ({ channels, breadcrumbs }, { id }) => (
   { channel: channels[id]
-  , isActive: breadcrumbs.includes(id)
+  , isActive: breadcrumbs.hasOwnProperty(id)
   }
 )
 

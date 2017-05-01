@@ -1,7 +1,10 @@
 import React from 'react'
 
 const Breadcrumbs = ({items}) => (
-  <h1 className="breadcrumbs">{items.join(' / ')}</h1>
+  <div className="breadcrumbs">
+    {Object.keys(items).map(id => <h1>{items[id].join(" / ")}</h1>)}
+  </div>
 )
+
 
 export default Breadcrumbs

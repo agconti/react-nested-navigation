@@ -28,7 +28,7 @@ const rootChannelsData = [
 , '2'
 , '3'
 ]
-const breadcrumbsData = []
+const breadcrumbsData = {}
 
 const defaultData = {
   rootChannels: rootChannelsData
